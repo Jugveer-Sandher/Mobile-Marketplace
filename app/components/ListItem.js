@@ -19,7 +19,8 @@ const ListItem = ({ title, subTitle }) => {
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "row"
+        flexDirection: "row",
+        padding: 15
     },
     subTitle: {
         color: colors.medium
