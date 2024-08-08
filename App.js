@@ -1,10 +1,13 @@
 
 import React from 'react';
-import { View } from 'react-native'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import ViewImageScreen from './app/screens/ViewImageScreen';
 import MessageScreen from './app/screens/MessageScreen';
 
 export default function App() {
-  return <MessageScreen  />
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+        <MessageScreen />
+    </GestureHandlerRootView>
+  );
 }
