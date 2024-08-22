@@ -37,6 +37,7 @@ const MessageScreen = (props) => {
                     <ListItem
                         title={item.title}
                         subTitle={item.description}
+                        image={require("../assets/profile.png")}
                         onPress={() => console.log("test", item)}
                         renderRightActions={() => 
                             <ListItemDeleteAction onPress={() => handleDelete(item)}/>}
