@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import Screen from '../components/Screen';
 import ListItem from '../components/ListItem';
@@ -30,31 +31,33 @@ const MessageScreen = (props) => {
 
     return (
         <Screen>
-            <FlatList 
-                data={messages} 
-                keyExtractor={message => message.id.toString()}
-                renderItem={({ item }) => (
-                    <ListItem
-                        title={item.title}
-                        subTitle={item.description}
-                        image={require("../assets/profile.png")}
-                        onPress={() => console.log("test", item)}
-                        renderRightActions={() => 
-                            <ListItemDeleteAction onPress={() => handleDelete(item)}/>}
-                    />
-                )} 
-                ItemSeparatorComponent={ListItemSeparator}
-                refreshing={refreshing}
-                onRefresh={() => {
-                    setMessages([
-                        {
-                            id: 2,
-                            title: "T2",
-                            description: "D2",
-                        }
-                    ])
-                }}
-            />
+            <GestureHandlerRootView>
+                <FlatList 
+                    data={messages} 
+                    keyExtractor={message => message.id.toString()}
+                    renderItem={({ item }) => (
+                        <ListItem
+                            title={item.title}
+                            subTitle={item.description}
+                            image={require("../assets/profile.png")}
+                            onPress={() => console.log("test", item)}
+                            renderRightActions={() => 
+                                <ListItemDeleteAction onPress={() => handleDelete(item)}/>}
+                        />
+                    )} 
+                    ItemSeparatorComponent={ListItemSeparator}
+                    refreshing={refreshing}
+                    onRefresh={() => {
+                        setMessages([
+                            {
+                                id: 2,
+                                title: "T2",
+                                description: "D2",
+                            }
+                        ])
+                    }}
+                />
+            </GestureHandlerRootView>
         </Screen>
     );
 }
