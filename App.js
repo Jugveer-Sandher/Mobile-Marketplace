@@ -1,13 +1,11 @@
+import React, { useState } from "react";
 
-import React from 'react';
-
-import Screen from './app/components/Screen';
-import AppTextInput from './app/components/AppTextInput';
+import LoginScreen from "./app/screens/LoginScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
   return (
-    <Screen>
-      <AppTextInput placeholder="Username" icon="email" />
-    </Screen>
+    <ListingEditScreen />
   );
 }
