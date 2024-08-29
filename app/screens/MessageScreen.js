@@ -3,9 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import Screen from '../components/Screen';
-import ListItem from '../components/ListItem';
-import ListItemSeparator from '../components/ListItemSeparator';
-import ListItemDeleteAction from '../components/ListItemDeleteAction';
+import { ListItem, ListItemSeparator, ListItemDeleteAction } from '../components/lists';
 
 const initalMessages = [
     {
