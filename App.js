@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import WelcomeScreen from "./app/screens/WelcomeScreen";
+import React, { useEffect, useState } from "react";
+
+import Screen from './app/components/Screen'
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
   return (
-    <WelcomeScreen />
+    <ListingEditScreen />
   );
 }
