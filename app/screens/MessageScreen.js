@@ -8,13 +8,13 @@ import { ListItem, ListItemSeparator, ListItemDeleteAction } from '../components
 const initalMessages = [
     {
         id: 1,
-        title: "T1",
-        description: "D1",
+        title: "Timothy L",
+        description: "Hey! Is this available?",
     },
     {
         id: 2,
-        title: "T2",
-        description: "D2",
+        title: "Jim Bob",
+        description: "Hi! I'm interested, but could you lower the price $10?",
     }
 ]
 
