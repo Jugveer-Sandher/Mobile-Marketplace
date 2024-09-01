@@ -59,6 +59,8 @@ router.post(
   ],
 
   async (req, res) => {
+    console.log("here")
+    console.log(req)
     const listing = {
       title: req.body.title,
       price: parseFloat(req.body.price),

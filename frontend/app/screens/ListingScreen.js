@@ -1,49 +1,53 @@
-import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
+import React, { useEffect } from "react";
+import { FlatList, Image, StyleSheet } from "react-native";
 
-import Card from '../components/Card';
-import Screen from '../components/Screen';
-import colors from '../config/colors';
+import ActivityIndicator from "../components/ActivityIndicator";
+import Button from "../components/Button";
+import Card from "../components/Card";
+import colors from "../config/colors";
+import listingsApi from "../api/listings";
+import routes from "../navigation/routes";
+import Screen from "../components/Screen";
+import AppText from "../components/Text";
+import useApi from "../hooks/useApi";
 
-const listings = [
-    {
-        id: 1,
-        title: 'Red jacket for sale',
-        price: 50,
-        image: require('../assets/jacket.jpg')
-    },
-    {
-        id: 2,
-        title: 'Chair',
-        price: 125,
-        image: require('../assets/couch.jpg')
-    }
-]
+function ListingScreen({ navigation }) {
+  const getListingsApi = useApi(listingsApi.getListings);
+  useEffect(() => {
+    getListingsApi.request();
+  }, []);
 
-const ListingScreen = ({ navigation }) => {
-    return (
-        <Screen style={styles.screen}>
-            <FlatList 
-                data={listings}
-                keyExtractor={listing => listing.id.toString()}
-                renderItem={({ item }) => 
-                    <Card 
-                        title={item.title}
-                        subTitle={"$" + item.price}
-                        image={item.image}
-                        onPress={() => navigation.navigate("ListingDetails", item)}
-                    />
-                }
-            />
-        </Screen>
-    );
+  return (
+    <Screen style={styles.screen}>
+      {getListingsApi.error && (
+        <>
+          <AppText>Couldn't retrieve the listings.</AppText>
+          <Button title="Retry" onPress={getListingsApi.request} />
+        </>
+      )}
+      <ActivityIndicator visible={getListingsApi.loading} />
+      <Image source="../assets/chair.jpg"/>
+      <FlatList
+        data={getListingsApi.data}
+        keyExtractor={(listing) => listing.id.toString()}
+        renderItem={({ item }) => (
+          <Card
+            title={item.title}
+            subTitle={"$" + item.price}
+            imageUrl={item.images[0].url}
+            onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
+          />
+        )}
+      />
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({
-    screen: {
-        padding: 20,
-        backgroundColor: colors.light
-    }
-})
+  screen: {
+    padding: 20,
+    backgroundColor: colors.light,
+  },
+});
 
 export default ListingScreen;
